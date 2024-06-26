@@ -1,0 +1,61 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs"
+
+<Meta title="UnicodeCase" />
+
+### Case1
+
+<Canvas>
+  <Story name="case1">
+    {() => {
+      return <div>👍</div>
+    }}
+  </Story>
+</Canvas>
+
+### Case 2 💀
+
+export const Case2 = ({ text }) => {
+  return <div>{text}</div>
+}
+
+<Canvas>
+  <Story name="case2">
+    {() => {
+      return <Case2 text="🤔" />
+    }}
+  </Story>
+</Canvas>
+
+### Case 3
+
+export const Case3 = () => {
+  return <Case2 text="😇" />
+}
+
+<Canvas>
+  <Story name="case3">{Case3.bind()}</Story>
+</Canvas>
+
+### Case 4
+
+export const Case4 = ({ comp }) => {
+  return <div>{comp}</div>
+}
+
+<Canvas>
+  <Story name="case4">
+    <Case4 comp={<span>😵‍💫</span>} />
+  </Story>
+</Canvas>
+
+### Case 5 💀
+
+export const Text = ({ text }) => <div>{text}</div>
+export const Comp = ({ comp }) => comp
+export const Case5 = (args) => <Comp {...args} />
+
+<Canvas>
+  <Story name="case5" args={{ comp: <Text text="👀" /> }}>
+    {Case5.bind()}
+  </Story>
+</Canvas>
